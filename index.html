@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>e-Dziennik — demo</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>e‑Dziennik (Demo)</h1>
+      <div id="userInfo"></div>
+    </header>
+
+    <main id="main">
+      <section id="loginSection" class="card">
+        <h2>Logowanie (demo)</h2>
+        <form id="loginForm">
+          <label>Email</label>
+          <input type="email" id="email" required placeholder="np. nauczyciel@szkola.pl">
+          <label>Rola</label>
+          <select id="role">
+            <option value="NAU">Nauczyciel</option>
+            <option value="WYC">Wychowawca</option>
+            <option value="PAR">Rodzic</option>
+            <option value="UCZ">Uczeń</option>
+            <option value="SZK_ADM">Admin szkoły</option>
+          </select>
+          <button type="submit">Zaloguj</button>
+        </form>
+        <p class="muted">To jest demo — konta są tworzone lokalnie w przeglądarce.</p>
+      </section>
+
+      <section id="dashboard" class="card hidden">
+        <div class="row">
+          <div>
+            <h2>Klasy</h2>
+            <select id="classSelect"></select>
+          </div>
+          <div>
+            <h2>Uczeń</h2>
+            <select id="studentSelect"></select>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button data-tab="grades" class="tab active">Oceny</button>
+          <button data-tab="attendance" class="tab">Frekwencja</button>
+          <button data-tab="messages" class="tab">Wiadomości</button>
+        </div>
+
+        <div id="tabContent" class="tabContent">
+          <!-- grades -->
+          <div id="grades" class="panel">
+            <h3>Oceny</h3>
+            <table id="gradesTable">
+              <thead><tr><th>Data</th><th>Przedmiot</th><th>Ocena</th><th>Kategoria</th><th>Komentarz</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <div id="gradeFormWrap" class="formInline hidden">
+              <input id="gSubject" placeholder="Przedmiot">
+              <input id="gValue" placeholder="Ocena (np. 5)">
+              <input id="gCategory" placeholder="Kategoria">
+              <input id="gComment" placeholder="Komentarz">
+              <button id="addGradeBtn">Dodaj ocenę</button>
+            </div>
+          </div>
+          <!-- attendance -->
+          <div id="attendance" class="panel hidden">
+            <h3>Frekwencja</h3>
+            <table id="attTable">
+              <thead><tr><th>Data</th><th>Lekcja</th><th>Status</th><th>Dodane przez</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <div id="attFormWrap" class="formInline hidden">
+              <input type="date" id="attDate">
+              <input id="attLesson" placeholder="Numer lekcji">
+              <select id="attStatus"><option>P</option><option>N</option><option>U</option></select>
+              <button id="addAttBtn">Zapisz</button>
+            </div>
+          </div>
+          <!-- messages -->
+          <div id="messages" class="panel hidden">
+            <h3>Wiadomości</h3>
+            <div id="messagesList"></div>
+            <div class="messageForm">
+              <input id="msgTo" placeholder="Do (email)">
+              <input id="msgSubj" placeholder="Temat">
+              <textarea id="msgBody" placeholder="Treść"></textarea>
+              <button id="sendMsgBtn">Wyślij</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="logoutBtn">Wyloguj</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <small>Demo — nie przechowuje danych na serwerze. Możesz dodać stronę na ekran startowy (PWA).</small>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
